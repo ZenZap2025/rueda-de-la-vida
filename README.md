@@ -13,4 +13,3 @@ Próximos pasos:
 📌 Implementación en Python para automatizar cálculos y mejorar la interfaz.
 📌 Posibilidad de comparación de respuestas a lo largo del tiempo.
 
-💡 Si tienes sugerencias o mejoras, siéntete libre de contribuir o abrir un issue.

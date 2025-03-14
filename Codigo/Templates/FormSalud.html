@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../styles/FormStyles.css">
+</head>
+
+
+<body>
+
+    <div class="container container-form mt-5">
+        <h2 class="text-center mb-4">Formulario de Evaluación</h2>
+        <form>
+
+            <div class="mb-3">
+                <label class="form-label">1. ¿Estás comiendo de manera equilibrada y nutritiva?</label>
+                <select class="form-select" name="pregunta1" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+
+                    <script>
+                        for (let i = 1; i <= 10; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2. ¿Cómo calificarías tu nivel de energía diaria?</label>
+                <select class="form-select" name="pregunta2" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    <script>
+                        for (let i = 1; i <= 10; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3. ¿Cuántas horas de sueño duermes en promedio cada noche? (8
+                    horas)</label>
+                <select class="form-select" name="pregunta3" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    <script>
+                        for (let i = 1; i <= 10; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4. ¿Realizas alguna actividad física regularmente?</label>
+                <select class="form-select" name="pregunta4" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    <script>
+                        for (let i = 1; i <= 10; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+
+            <div class="mb-3">
+                <label class="form-label">5. ¿Cómo gestionas el estrés y las emociones en tu vida diaria?</label>
+                <select class="form-select" name="pregunta5" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    <script>
+                        for (let i = 1; i <= 10; i++) {
+                            document.write(`<option value="${i}">${i}</option>`);
+                        }
+                    </script>
+                </select>
+            </div>
+
+
+            <div class="text-center">
+                <button type="button" class="btn btn-primary" onclick="location.href=''">Finalizar y guardar</button>
+            </div>
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

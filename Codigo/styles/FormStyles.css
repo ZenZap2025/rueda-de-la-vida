@@ -5,29 +5,24 @@ body {
     height: 100vh;
     background-color: #f0f8ff;
 }
-
 .container-form {
     background-color: #add8e6;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+.container-form-familia {
+    background-color: #f7c082;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.container-form-dinero {
+    background-color: #7cb376;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(206, 20, 20, 0.1);
+}
 .container-form-amor {
     background-color: #FF6961;
     padding: 20px;

@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Dinero</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/FormStyles.css') }}">
+</head>
+
+<body>
+
+    <div class="container container-form-dinero mt-5">
+        <h2 class="text-center mb-4">Formulario de Dinero</h2>
+
+        <!-- Se agregó method="POST" para enviar datos a Flask -->
+        <form method="POST" action="{{ url_for('form_dinero') }}">
+
+            <div class="mb-3">
+                <label class="form-label">1. ¿Ahorras e inviertes al menos el 20% de tus ingresos cada mes?</label>
+                <select class="form-select" name="pregunta1" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2. ¿Tienes un presupuesto mensual y lo sigues disciplinadamente?</label>
+                <select class="form-select" name="pregunta2" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3. ¿Puedes cubrir un gasto inesperado sin endeudarte?</label>
+                <select class="form-select" name="pregunta3" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4. ¿Tienes claro cómo hacer crecer tu dinero a través de inversiones?</label>
+                <select class="form-select" name="pregunta4" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">5. ¿Tienes un plan financiero a largo plazo con metas definidas?</label>
+                <select class="form-select" name="pregunta5" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="text-center">
+                <!-- Se cambió onclick por type="submit" para que envíe datos a Flask -->
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

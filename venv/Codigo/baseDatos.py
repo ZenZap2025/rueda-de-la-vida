@@ -5,7 +5,7 @@ db = SQLAlchemy()
 
 # Definir modelo de datos
 class Respuesta(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True, autoincrement=True)  # Agregar autoincrement=True
     nombre_completo = db.Column(db.String(100), nullable=False)
     edad = db.Column(db.Integer, nullable=False)
     departamento = db.Column(db.String(100), nullable=False)

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Resultados Guardados</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Tu CSS personalizado -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/FormStyles.css') }}">
+
+  <style>
+    /* Ajustes básicos para la tabla */
+    body {
+      background-color: #f8f9fa;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      margin-top: 2rem;
+    }
+    h1 {
+      margin-bottom: 1.5rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h1 class="text-center">Resultados Guardados</h1>
+    <table class="table table-striped table-bordered table-hover">
+      <thead class="table-dark">
+        <tr>
+          <th>ID</th>
+          <th>Nombre</th>
+          <th>Edad</th>
+          <th>Departamento</th>
+          <th>Amor</th>
+          <th>Dinero</th>
+          <th>Familia</th>
+          <th>Salud</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% if respuestas %}
+          {% for r in respuestas %}
+          <tr>
+            <td>{{ r.id }}</td>
+            <td>{{ r.nombre_completo }}</td>
+            <td>{{ r.edad }}</td>
+            <td>{{ r.departamento }}</td>
+            <td>{{ r.amor }}%</td>
+            <td>{{ r.dinero }}%</td>
+            <td>{{ r.familia }}%</td>
+            <td>{{ r.salud }}%</td>
+            <td>
+              <!-- Botón para eliminar -->
+              <form method="POST" 
+                    action="{{ url_for('eliminar_respuesta', respuesta_id=r.id) }}" 
+                    style="display:inline;">
+                <button type="submit" class="btn btn-danger btn-sm">
+                  Eliminar
+                </button>
+              </form>
+            </td>
+          </tr>
+          {% endfor %}
+        {% else %}
+          <tr>
+            <td colspan="9" class="text-center">No hay resultados almacenados.</td>
+          </tr>
+        {% endif %}
+      </tbody>
+    </table>
+
+    <!-- Botón para volver al menú principal -->
+    <div class="text-center">
+      <a href="{{ url_for('main') }}" class="btn btn-primary">
+        Volver al Menú Principal
+      </a>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

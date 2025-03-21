@@ -1,8 +1,14 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for
 from baseDatos import db, Respuesta
+
+# Define la ruta base del proyecto
+BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+
 app = Flask(__name__)
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+# Configuración con ruta absoluta para la base de datos
+app.config['SQLALCHEMY_DATABASE_URI'] = "sqlite:///" + os.path.join(BASE_DIR, "database.db")
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 # Inicializar la base de datos con la aplicación
@@ -20,6 +26,11 @@ porcentaje_dinero = 0
 porcentaje_familia = 0
 porcentaje_salud = 0
 
+# Variables globales para los datos personales
+global_nombre = ""
+global_edad = 0
+global_departamento = ""
+
 def convertir_a_numeros(lista):
     """Convierte una lista de strings en una lista de enteros."""
     return [int(x) for x in lista if x and x.isdigit()]
@@ -35,25 +46,30 @@ def procesar_datos():
     global respuestas_amor, respuestas_dinero, respuestas_familia, respuestas_salud
     global porcentaje_amor, porcentaje_dinero, porcentaje_familia, porcentaje_salud
 
-    # Convertir respuestas a números
     respuestas_amor = convertir_a_numeros(respuestas_amor)
     respuestas_dinero = convertir_a_numeros(respuestas_dinero)
     respuestas_familia = convertir_a_numeros(respuestas_familia)
     respuestas_salud = convertir_a_numeros(respuestas_salud)
 
-    # Calcular porcentajes
     porcentaje_amor = calcular_porcentaje(respuestas_amor)
     porcentaje_dinero = calcular_porcentaje(respuestas_dinero)
     porcentaje_familia = calcular_porcentaje(respuestas_familia)
     porcentaje_salud = calcular_porcentaje(respuestas_salud)
 
-@app.route("/", methods=["GET", "POST"])
-def home():
+# Ruta principal: formulario de menú
+@app.route("/")
+def main():
+    return render_template("Main.html")
+
+# Nueva ruta para datos personales (antes era "/")
+@app.route("/personal", methods=["GET", "POST"])
+def personal():
+    global global_nombre, global_edad, global_departamento
     if request.method == "POST":
-        nombre = request.form["nombre"]
-        edad = request.form["edad"]
-        departamento = request.form["departamento"]
-        print(f"Datos recibidos: {nombre}, {edad} años, de {departamento}.")
+        global_nombre = request.form["nombre"]
+        global_edad = int(request.form["edad"])
+        global_departamento = request.form["departamento"]
+        print(f"Datos personales: {global_nombre}, {global_edad}, {global_departamento}")
         return redirect(url_for("form_amor"))
     return render_template("FormInfoPersonal.html")
 
@@ -113,35 +129,46 @@ def form_salud():
         return redirect(url_for("form_final"))
     return render_template("FormSalud.html")
 
-@app.route("/final")
+# Ruta final: guarda datos y redirige al menú principal
+@app.route("/final", methods=["GET", "POST"])
 def form_final():
-    procesar_datos()  # Convertir respuestas y calcular porcentajes antes de mostrar resultados
-    print(f"✅ Respuestas de Amor: {respuestas_amor} -> Porcentaje: {porcentaje_amor}%")
-    print(f"✅ Respuestas de Dinero: {respuestas_dinero} -> Porcentaje: {porcentaje_dinero}%")
-    print(f"✅ Respuestas de Familia: {respuestas_familia} -> Porcentaje: {porcentaje_familia}%")
-    print(f"✅ Respuestas de Salud: {respuestas_salud} -> Porcentaje: {porcentaje_salud}%")
+    global global_nombre, global_edad, global_departamento
     if request.method == "POST":
-        nombre_completo = request.form["nombre"]
-        edad = int(request.form["edad"])
-        departamento = request.form["departamento"]
-
-        # Guardar en la base de datos
+        procesar_datos()
         nueva_respuesta = Respuesta(
-            nombre_completo=nombre_completo,
-            edad=edad,
-            departamento=departamento,
-            amor=calcular_porcentaje(respuestas_amor),
-            dinero=calcular_porcentaje(respuestas_dinero),
-            familia=calcular_porcentaje(respuestas_familia),
-            salud=calcular_porcentaje(respuestas_salud)
+            nombre_completo=global_nombre,
+            edad=global_edad,
+            departamento=global_departamento,
+            amor=porcentaje_amor,
+            dinero=porcentaje_dinero,
+            familia=porcentaje_familia,
+            salud=porcentaje_salud
         )
-
         db.session.add(nueva_respuesta)
         db.session.commit()
-
-        return redirect(url_for("ver_resultados"))
+        print("✅ Respuesta guardada en la base de datos.")
+        # Tras guardar, redirigimos al menú principal
+        return redirect(url_for("main"))
     return render_template("FormFinal.html")
-    
+
+# Ruta para visualizar resultados
+@app.route("/resultados")
+def ver_resultados():
+    respuestas = Respuesta.query.all()
+    print(f"📋 Se encontraron {len(respuestas)} registro(s) en la base de datos.")
+    return render_template("Resultados.html", respuestas=respuestas)
+
+@app.route("/eliminar/<int:respuesta_id>", methods=["POST"])
+def eliminar_respuesta(respuesta_id):
+    registro = Respuesta.query.get(respuesta_id)
+    if registro:
+        db.session.delete(registro)
+        db.session.commit()
+        print(f"Registro con ID {respuesta_id} eliminado.")
+    else:
+        print(f"No se encontró registro con ID {respuesta_id}.")
+    return redirect(url_for("ver_resultados"))
+
 
 if __name__ == "__main__":
     app.run(debug=True)

@@ -10,7 +10,8 @@
 <body>
     <div class="container container-form text-center">
         <h2 class="mb-4">Información Personal</h2>
-        <form method="POST" action="/">
+        <!-- Ajustamos la ruta para que coincida con la de app.py -->
+        <form method="POST" action="{{ url_for('personal') }}">
             <div class="mb-3">
                 <label for="nombre" class="form-label">Nombre Completo</label>
                 <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre completo" required>
@@ -28,3 +29,4 @@
     </div>
 </body>
 </html>
+

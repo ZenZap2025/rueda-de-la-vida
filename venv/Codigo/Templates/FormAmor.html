@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuestionario Amor</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/FormStyles.css') }}">
+</head>
+
+<body>
+
+    <div class="container container-form-amor mt-5">
+        <h2 class="text-center mb-4">Formulario de Amor</h2>
+        
+        <!-- Agregado method="POST" para enviar datos a Flask -->
+        <form method="POST" action="{{ url_for('form_amor') }}">
+
+            <div class="mb-3">
+                <label class="form-label">1. ¿Qué tan satisfecho/a estás con tu vida amorosa actual?</label>
+                <select class="form-select" name="pregunta1" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2. ¿Qué tan presente y estable sientes el amor en tu vida?</label>
+                <select class="form-select" name="pregunta2" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3. ¿Qué tan bien te comunicas con tu pareja o con las personas de interés romántico?</label>
+                <select class="form-select" name="pregunta3" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4. ¿Qué tan conectado/a emocionalmente te sientes con tu pareja o con alguien especial?</label>
+                <select class="form-select" name="pregunta4" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">5. ¿Qué tan importante consideras el amor en tu felicidad y bienestar general?</label>
+                <select class="form-select" name="pregunta5" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="text-center">
+                <!-- Se cambió onclick por type="submit" para que envíe datos a Flask -->
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </div>
+
+        </form>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

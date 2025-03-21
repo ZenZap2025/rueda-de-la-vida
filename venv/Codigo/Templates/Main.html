@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Encuesta Rueda de la Vida</title>
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Tu CSS personalizado -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles/FormStyles.css') }}">
+
+  <style>
+    /* Fondo degradado */
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      background: linear-gradient(120deg, #8d8bf3, #4c7adf);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #333;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    /* Encabezado */
+    header {
+      backdrop-filter: blur(5px);
+      padding: 1rem;
+      text-align: center;
+    }
+
+    header h1 {
+      color: #fff;
+      font-weight: 700;
+      letter-spacing: 1px;
+      margin: 0;
+    }
+
+    /* Contenedor principal */
+    .hero {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .hero h2 {
+      color: #fff;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    }
+
+    .hero p {
+      color: #f7f7f7;
+      font-size: 1.2rem;
+      max-width: 600px;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Botones */
+    .btn-container {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-custom {
+      font-size: 1.1rem;
+      font-weight: 500;
+      padding: 0.75rem 1.5rem;
+      border-radius: 50px;
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+      transition: transform 0.2s;
+    }
+
+    .btn-custom:hover {
+      transform: translateY(-3px);
+    }
+
+    .btn-ingresar {
+      background-color: #1bc5bd; /* verde azulado */
+      color: #fff;
+      border: none;
+    }
+
+    .btn-ingresar:hover {
+      background-color: #17a8a1;
+      color: #fff;
+    }
+
+    .btn-visualizar {
+      background-color: #007bff; /* azul bootstrap */
+      color: #fff;
+      border: none;
+    }
+
+    .btn-visualizar:hover {
+      background-color: #0056b3;
+      color: #fff;
+    }
+
+    /* Footer */
+    footer {
+      backdrop-filter: blur(5px);
+      text-align: center;
+      padding: 0.5rem;
+      color: #fff;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Encabezado con efecto translúcido -->
+  <header>
+    <h1>Rueda de la Vida</h1>
+  </header>
+
+  <!-- Sección principal estilo "hero" -->
+  <div class="hero">
+    <h2>Bienvenido a la Encuesta</h2>
+    <p>
+      Conoce tu nivel de satisfacción en distintas áreas de tu vida: amor, dinero, familia y salud. 
+      Completa esta encuesta y visualiza tus resultados para identificar oportunidades de mejora.
+    </p>
+    <div class="btn-container">
+      <a href="{{ url_for('personal') }}" class="btn btn-custom btn-ingresar">Ingresar Encuesta</a>
+      <a href="{{ url_for('ver_resultados') }}" class="btn btn-custom btn-visualizar">Visualizar Datos</a>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; Derechos Reservados 2025</p>
+  </footer>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

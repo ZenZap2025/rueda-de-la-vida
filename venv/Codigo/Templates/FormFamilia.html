@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulario de Familia</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/FormStyles.css') }}">
+</head>
+
+<body>
+
+    <div class="container container-form-familia mt-5">
+        <h2 class="text-center mb-4">Formulario de Familia</h2>
+        <form method="POST" action="{{ url_for('form_familia') }}">
+
+            <div class="mb-3">
+                <label class="form-label">1. ¿Qué tan satisfecho/a estás con tu relación actual con tu familia?</label>
+                <select class="form-select" name="pregunta1" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">2. ¿Qué tan presente y unido/a te sientes con tu familia?</label>
+                <select class="form-select" name="pregunta2" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">3. ¿Qué tan buena es la comunicación dentro de tu familia?</label>
+                <select class="form-select" name="pregunta3" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">4. ¿Qué tan apoyado/a y comprendido/a te sientes por tu familia?</label>
+                <select class="form-select" name="pregunta4" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">5. ¿Qué tan importante consideras a tu familia en tu felicidad y bienestar general?</label>
+                <select class="form-select" name="pregunta5" required>
+                    <option value="" disabled selected>Selecciona un número</option>
+                    {% for i in range(1, 11) %}
+                        <option value="{{ i }}">{{ i }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Continuar</button>
+            </div>
+
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

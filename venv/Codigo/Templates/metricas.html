@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Métricas Generales - La Rueda de la Vida</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      background-color: #fdf6f0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .container {
+      margin-top: 2rem;
+      max-width: 900px;
+    }
+    h1 {
+      color: #4a4a4a;
+      margin-bottom: 2rem;
+    }
+    .card {
+      border: none;
+      border-radius: 15px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      margin-bottom: 2rem;
+    }
+    .card-header {
+      background-color: #fff;
+      border-bottom: none;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #555;
+    }
+    .card-body {
+      background-color: #fff;
+      padding: 1.5rem;
+    }
+    .card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin: auto;
+      display: block;
+    }
+    .btn-back {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container text-center">
+    <h1>Métricas Generales</h1>
+
+    <!-- Tarjeta Promedio General -->
+    <div class="card">
+      <div class="card-header">Promedio General por Categoría</div>
+      <div class="card-body">
+        <img src="{{ url_for('static', filename='images/promedios.png') }}" alt="Promedios">
+      </div>
+    </div>
+
+    <!-- Tarjeta Distribución de Edades -->
+    <div class="card">
+      <div class="card-header">Distribución de Edades</div>
+      <div class="card-body">
+        <img src="{{ url_for('static', filename='images/edades.png') }}" alt="Edades">
+      </div>
+    </div>
+
+    <!-- Tarjeta Participantes por Departamento -->
+    <div class="card">
+      <div class="card-header">Participantes por Departamento</div>
+      <div class="card-body">
+        <img src="{{ url_for('static', filename='images/departamentos.png') }}" alt="Departamentos">
+      </div>
+    </div>
+
+    <!-- Tarjeta Gráfica de Torta -->
+    <div class="card">
+      <div class="card-header">Distribución de Promedios (Torta)</div>
+      <div class="card-body">
+        <img src="{{ url_for('static', filename='images/torta.png') }}" alt="Gráfica de Torta">
+      </div>
+    </div>
+
+    <!-- Tarjeta Scatter Plot -->
+    <div class="card">
+      <div class="card-header">Correlación entre Edad y Amor</div>
+      <div class="card-body">
+        <img src="{{ url_for('static', filename='images/scatter.png') }}" alt="Scatter Plot">
+      </div>
+    </div>
+
+    <a href="{{ url_for('main') }}" class="btn btn-primary btn-back">Volver al Menú Principal</a>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
